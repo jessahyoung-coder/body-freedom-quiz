@@ -1358,18 +1358,17 @@
       S: 'The Swinger'
     };
 
-    // Send to Google Sheets
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP0N2LSnDTsIJbqG9pelx5XZaFXfqGFH45--YLmQF2BnF3qsOn1D-GDxm2Y_qvkAeUtw/exec';
-    fetch(SCRIPT_URL, {
+    // Send silently to Google Forms → auto-populates Google Sheet
+    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfRlSPDszYbTpyq91Pp6cfFpqW_-sZG5XXS5kjtmkmEtWWQeQ/formResponse';
+    const formData = new FormData();
+    formData.append('entry.190751889', name);
+    formData.append('entry.1809201939', email);
+    formData.append('entry.110310144', resultNames[result]);
+    fetch(FORM_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: name,
-        email: email,
-        result: resultNames[result]
-      })
-    }).catch(err => console.log('Sheet error:', err));
+      body: formData
+    }).catch(err => console.log('Form error:', err));
 
     // Hide gate
     document.getElementById('emailGate').style.display = 'none';
