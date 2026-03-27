@@ -1358,17 +1358,38 @@
       S: 'The Swinger'
     };
 
-    // Send silently to Google Forms → auto-populates Google Sheet
-    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfRlSPDszYbTpyq91Pp6cfFpqW_-sZG5XXS5kjtmkmEtWWQeQ/formResponse';
-    const formData = new FormData();
-    formData.append('entry.190751889', name);
-    formData.append('entry.1809201939', email);
-    formData.append('entry.110310144', resultNames[result]);
-    fetch(FORM_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: formData
-    }).catch(err => console.log('Form error:', err));
+    // Submit to Google Forms via hidden iframe (bypasses CORS)
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSfRlSPDszYbTpyq91Pp6cfFpqW_-sZG5XXS5kjtmkmEtWWQeQ/formResponse';
+    form.target = 'hidden_iframe';
+    form.style.display = 'none';
+
+    const fields = {
+      'entry.190751889': name,
+      'entry.1809201939': email,
+      'entry.110310144': resultNames[result]
+    };
+
+    Object.entries(fields).forEach(([key, val]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = val;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(() => {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
 
     // Hide gate
     document.getElementById('emailGate').style.display = 'none';
