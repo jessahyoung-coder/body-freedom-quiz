@@ -1,3 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Body Freedom Quiz — Jessah Autum</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burg: #641B2F;
+    --olive: #5D5F39;
+    --dark-olive: #3d4024;
+    --cream: #EFEBE0;
+    --pink: #F6B5CB;
+    --sand: #DDD2C0;
+    --yellow: #F7F0AC;
+    --dark: #1e1c12;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    pointer-events: none;
+    z-index: 100;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--burg);
+    padding: 72px 48px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(246,181,203,0.13) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 100%, rgba(246,181,203,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(246,181,203,0.52);
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--pink);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3vw, 21px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(239,235,224,0.55);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 2;
+    color: rgba(239,235,224,0.68);
+    max-width: 460px;
+    margin: 0 auto 32px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-promise {
+    background: rgba(246,181,203,0.1);
+    border: 0.5px solid rgba(246,181,203,0.22);
+    border-radius: 10px;
+    padding: 20px 28px;
+    max-width: 460px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-promise p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--pink);
+    line-height: 1.6;
+  }
+
+  /* ── FOR HER ── */
+  .for-her {
+    background: var(--dark-olive);
+    padding: 48px;
+    text-align: center;
+  }
+
+  .for-her-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(239,235,224,0.32);
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .for-her-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(19px, 3.5vw, 26px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--pink);
+    margin-bottom: 28px;
+    line-height: 1.35;
+  }
+
+  .for-her-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .for-her-item {
+    background: rgba(246,181,203,0.06);
+    border: 0.5px solid rgba(246,181,203,0.13);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .fh-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--pink);
+    flex-shrink: 0;
+    margin-top: 8px;
+    opacity: 0.5;
+  }
+
+  .for-her-item p {
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 1.7;
+    color: rgba(239,235,224,0.68);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── MAIN ── */
+  .main { padding-top: 48px; }
+
+  .section-heading {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(30,28,18,0.34);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: rgba(30,28,18,0.1);
+  }
+
+  /* ── QUESTION CARDS ── */
+  .q-card {
+    background: white;
+    border: 0.5px solid rgba(30,28,18,0.08);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 12px rgba(100,27,47,0.04);
+    transition: box-shadow 0.2s;
+  }
+
+  .q-card:hover { box-shadow: 0 2px 20px rgba(100,27,47,0.07); }
+
+  .q-num {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(30,28,18,0.3);
+    margin-bottom: 8px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--dark);
+    margin-bottom: 18px;
+  }
+
+  .q-text em { font-style: italic; color: var(--burg); }
+
+  .answer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 7px;
+    border: 0.5px solid rgba(30,28,18,0.09);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+
+  .answer:last-child { margin-bottom: 0; }
+  .answer:hover { background: rgba(100,27,47,0.03); border-color: rgba(100,27,47,0.16); }
+  .answer.selected { background: rgba(100,27,47,0.06); border-color: rgba(100,27,47,0.26); }
+
+  .answer-letter {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(30,28,18,0.3);
+    min-width: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .answer-text {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(30,28,18,0.72);
+    flex: 1;
+  }
+
+  /* ── SUBMIT ── */
+  .submit-wrap { margin-top: 32px; text-align: center; }
+
+  .submit-btn {
+    background: var(--burg);
+    color: var(--pink);
+    border: none;
+    border-radius: 8px;
+    padding: 18px 52px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 300;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── EMAIL GATE ── */
+  .email-gate {
+    display: none;
+    background: var(--burg);
+    border-radius: 14px;
+    padding: 48px 40px;
+    margin-top: 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .email-gate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 0%, rgba(246,181,203,0.12) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .email-gate.visible { display: block; }
+
+  .gate-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(246,181,203,0.5);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .gate-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gate-title em { font-style: italic; color: var(--pink); }
+
+  .gate-sub {
+    font-size: 13px;
+    font-weight: 200;
+    color: rgba(239,235,224,0.6);
+    line-height: 1.85;
+    margin: 0 auto 28px;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .gate-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gate-field {
+    background: rgba(239,235,224,0.1);
+    border: 0.5px solid rgba(239,235,224,0.2);
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream);
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .gate-field:focus { border-color: rgba(246,181,203,0.5); }
+  .gate-field::placeholder { color: rgba(239,235,224,0.32); }
+
+  .gate-btn {
+    background: var(--pink);
+    color: var(--burg);
+    border: none;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 2px;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .gate-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .gate-privacy {
+    font-size: 11px;
+    font-weight: 200;
+    color: rgba(239,235,224,0.32);
+    margin-top: 14px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── RESULTS WRAPPER ── */
+  .results-wrapper {
+    display: none;
+    margin-top: 0;
+  }
+
+  .results-wrapper.visible { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-card {
+    display: none;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .result-card.active { display: block; }
+
+  /* ── STEP 1: RESULT ── */
+  .step-block {
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-r { background: var(--burg); }
+  .step-c { background: var(--olive); }
+  .step-s { background: var(--dark-olive); }
+
+  .step-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 85% 10%, rgba(246,181,203,0.09) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .step-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    flex-shrink: 0;
+  }
+
+  .sn-light { background: rgba(246,181,203,0.18); color: var(--pink); }
+  .sn-dark { background: rgba(30,28,18,0.15); color: rgba(30,28,18,0.7); }
+
+  .step-title-sm {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .stl-light { color: rgba(239,235,224,0.45); }
+  .stl-dark { color: rgba(30,28,18,0.4); }
+
+  .result-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(246,181,203,0.45);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .result-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 62px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.95;
+    margin-bottom: 22px;
+  }
+
+  .rn-r { color: var(--pink); }
+  .rn-c { color: var(--yellow); }
+  .rn-s { color: var(--pink); }
+
+  .result-validation {
+    background: rgba(239,235,224,0.07);
+    border: 0.5px solid rgba(239,235,224,0.13);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .result-validation p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(239,235,224,0.88);
+  }
+
+  .result-body {
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 1.95;
+    color: rgba(239,235,224,0.7);
+    margin-bottom: 22px;
+    letter-spacing: 0.02em;
+  }
+
+  .result-root {
+    border-radius: 9px;
+    padding: 18px 22px;
+    margin-bottom: 22px;
+  }
+
+  .root-r { background: rgba(246,181,203,0.08); border: 0.5px solid rgba(246,181,203,0.16); }
+  .root-c { background: rgba(247,240,172,0.08); border: 0.5px solid rgba(247,240,172,0.14); }
+  .root-s { background: rgba(246,181,203,0.08); border: 0.5px solid rgba(246,181,203,0.16); }
+
+  .root-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .rl-r { color: rgba(246,181,203,0.46); }
+  .rl-c { color: rgba(247,240,172,0.42); }
+  .rl-s { color: rgba(246,181,203,0.46); }
+
+  .root-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .rt-r { color: var(--pink); }
+  .rt-c { color: var(--yellow); }
+  .rt-s { color: var(--pink); }
+
+  .heal-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: rgba(239,235,224,0.35);
+    display: block;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .heal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 1.75;
+    color: rgba(239,235,224,0.72);
+    letter-spacing: 0.02em;
+  }
+
+  .h-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+    opacity: 0.65;
+  }
+
+  .hd-pk { background: var(--pink); }
+  .hd-ye { background: var(--yellow); }
+
+  .result-hope {
+    border-radius: 9px;
+    padding: 20px 22px;
+    margin-top: 24px;
+  }
+
+  .rh-r { background: rgba(246,181,203,0.09); border: 0.5px solid rgba(246,181,203,0.18); }
+  .rh-c { background: rgba(247,240,172,0.08); border: 0.5px solid rgba(247,240,172,0.15); }
+  .rh-s { background: rgba(246,181,203,0.09); border: 0.5px solid rgba(246,181,203,0.18); }
+
+  .result-hope p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .rht-r { color: var(--pink); }
+  .rht-c { color: var(--yellow); }
+  .rht-s { color: var(--pink); }
+
+  /* ── DIVIDER BETWEEN STEPS ── */
+  .step-divider {
+    height: 4px;
+    background: var(--cream);
+  }
+
+  /* ── STEP 2: VIDEO + BOOKING ── */
+  .video-section {
+    background: var(--cream);
+    padding: 56px 48px;
+    text-align: center;
+  }
+
+  .video-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(30,28,18,0.35);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .video-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .video-title em { font-style: italic; color: var(--burg); }
+
+  .video-sub {
+    font-size: 13px;
+    font-weight: 200;
+    color: rgba(30,28,18,0.58);
+    line-height: 1.85;
+    margin: 0 auto 32px;
+    max-width: 460px;
+    letter-spacing: 0.02em;
+  }
+
+  /* VIDEO PLAYER BOX */
+  .video-box {
+    background: var(--dark-olive);
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 0 auto 32px;
+    max-width: 580px;
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* VIDEO UPLOAD PLACEHOLDER — replace video src with your file */
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--dark-olive);
+    cursor: pointer;
+  }
+
+  .video-placeholder-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(246,181,203,0.12);
+    border: 1px solid rgba(246,181,203,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-placeholder-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--pink);
+    opacity: 0.8;
+    margin-left: 3px;
+  }
+
+  .video-placeholder-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(239,235,224,0.45);
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .video-placeholder-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(239,235,224,0.55);
+  }
+
+  /* DESIRED OUTCOME STRIP */
+  .outcome-strip {
+    background: var(--burg);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 0 auto 32px;
+    max-width: 580px;
+    text-align: left;
+  }
+
+  .outcome-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(246,181,203,0.45);
+    display: block;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .outcome-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  .outcome-title em { font-style: italic; color: var(--pink); }
+
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .outcome-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 200;
+    color: rgba(239,235,224,0.7);
+    line-height: 1.65;
+    letter-spacing: 0.02em;
+  }
+
+  .outcome-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--pink);
+    flex-shrink: 0;
+    margin-top: 7px;
+    opacity: 0.55;
+  }
+
+  /* ── BOOKING ── */
+  .booking-section {
+    background: white;
+    border-radius: 14px;
+    padding: 36px;
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 2px 24px rgba(100,27,47,0.06);
+    border: 0.5px solid rgba(30,28,18,0.08);
+  }
+
+  .booking-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(30,28,18,0.35);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .booking-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 400;
+    color: var(--burg);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .booking-sub {
+    font-size: 13px;
+    font-weight: 200;
+    color: rgba(30,28,18,0.55);
+    line-height: 1.85;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .booking-btn {
+    display: block;
+    background: var(--burg);
+    color: var(--pink);
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 18px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-bottom: 14px;
+  }
+
+  .booking-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .booking-skip {
+    font-size: 12px;
+    font-weight: 200;
+    color: rgba(30,28,18,0.38);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    letter-spacing: 0.02em;
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    transition: color 0.15s;
+  }
+
+  .booking-skip:hover { color: rgba(30,28,18,0.6); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 48px 24px 40px;
+    background: var(--dark-olive);
+    margin: 0 -24px -80px;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(239,235,224,0.28);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 28px 52px; }
+    .for-her { padding: 40px 24px; }
+    .for-her-grid { grid-template-columns: 1fr; }
+    .gate-fields { grid-template-columns: 1fr; }
+    .q-card { padding: 22px 18px; }
+    .step-block { padding: 40px 24px; }
+    .video-section { padding: 40px 24px; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .booking-section { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-eyebrow">free · 3 minutes · uncomfortably accurate</span>
+  <h1 class="hero-title">
+    Your body has been keeping a secret.
+    <em>Ready to hear it?</em>
+  </h1>
+  <p class="hero-tagline">The Body Freedom Quiz</p>
+  <p class="hero-desc">
+    You've tried everything. The plans, the resets, the "new me" eras. And something keeps happening that you can't quite explain.<br><br>
+    This quiz reveals what's actually been running your body — and what it will take to finally feel free in it.
+  </p>
+  <div class="hero-promise">
+    <p>Answer 10 questions. Unlock your result — your exact pattern, your root cause, and your first real step forward.</p>
+  </div>
+</div>
+
+<!-- FOR HER -->
+<div class="for-her">
+  <span class="for-her-label">this is for you if</span>
+  <div class="for-her-title">You love deeply and you've been losing yourself doing it — especially in your body.</div>
+  <div class="for-her-grid">
+    <div class="for-her-item"><div class="fh-dot"></div><p>Your eating changes when love feels uncertain and you can't explain why</p></div>
+    <div class="for-her-item"><div class="fh-dot"></div><p>Your "healthy era" always comes after a breakup — not from genuine self-love</p></div>
+    <div class="for-her-item"><div class="fh-dot"></div><p>Your weight mirrors your relationship status more than what you actually eat</p></div>
+    <div class="for-her-item"><div class="fh-dot"></div><p>You've tried every plan and something always derails it — you can't name what</p></div>
+    <div class="for-her-item"><div class="fh-dot"></div><p>When he doesn't reach for you your first thought goes to your body</p></div>
+    <div class="for-her-item"><div class="fh-dot"></div><p>You're exhausted by the cycle and ready to actually understand it</p></div>
+  </div>
+</div>
+
+<div class="container">
+<div class="main">
+
+  <!-- QUESTIONS -->
+  <div id="questions">
+    <div class="section-heading">the 10 questions</div>
+
+    <div class="q-card" data-q="1">
+      <div class="q-num">01 of 10</div>
+      <div class="q-text">When you're in a relationship that feels <em>good</em> — what happens to your eating?</div>
+      <div class="answer" onclick="pick(this,'R',1)"><span class="answer-letter">A</span><span class="answer-text">I get stricter — I want to look and feel my best for him</span></div>
+      <div class="answer" onclick="pick(this,'C',1)"><span class="answer-letter">B</span><span class="answer-text">I relax completely — food gets looser and I stop caring as much</span></div>
+      <div class="answer" onclick="pick(this,'S',1)"><span class="answer-letter">C</span><span class="answer-text">It depends on how secure I feel in the relationship day to day</span></div>
+    </div>
+
+    <div class="q-card" data-q="2">
+      <div class="q-num">02 of 10</div>
+      <div class="q-text">A relationship ends. What's the first thing that shifts in your body?</div>
+      <div class="answer" onclick="pick(this,'R',2)"><span class="answer-letter">A</span><span class="answer-text">I clean everything up immediately — I need something to feel in control of</span></div>
+      <div class="answer" onclick="pick(this,'C',2)"><span class="answer-letter">B</span><span class="answer-text">I reach for comfort — food fills the space when love is gone</span></div>
+      <div class="answer" onclick="pick(this,'S',2)"><span class="answer-letter">C</span><span class="answer-text">Both — I swing between restricting and reaching for comfort depending on the day</span></div>
+    </div>
+
+    <div class="q-card" data-q="3">
+      <div class="q-num">03 of 10</div>
+      <div class="q-text">He goes quiet for a few days. How does your body tend to respond?</div>
+      <div class="answer" onclick="pick(this,'R',3)"><span class="answer-letter">A</span><span class="answer-text">I exercise more and eat less — having control over my body helps me cope</span></div>
+      <div class="answer" onclick="pick(this,'C',3)"><span class="answer-letter">B</span><span class="answer-text">My routine falls apart — the uncertainty takes over and I turn to food</span></div>
+      <div class="answer" onclick="pick(this,'S',3)"><span class="answer-letter">C</span><span class="answer-text">I swing between both — sometimes I restrict, sometimes I reach for comfort</span></div>
+    </div>
+
+    <div class="q-card" data-q="4">
+      <div class="q-num">04 of 10</div>
+      <div class="q-text">Your weight tends to shift most noticeably when...</div>
+      <div class="answer" onclick="pick(this,'R',4)"><span class="answer-letter">A</span><span class="answer-text">I'm in a relationship — I tend to gain, then lose it when things fall apart</span></div>
+      <div class="answer" onclick="pick(this,'C',4)"><span class="answer-letter">B</span><span class="answer-text">I'm single or going through heartbreak — that's when my body changes most</span></div>
+      <div class="answer" onclick="pick(this,'S',4)"><span class="answer-letter">C</span><span class="answer-text">It shifts constantly — it always seems to reflect what's happening in my love life</span></div>
+    </div>
+
+    <div class="q-card" data-q="5">
+      <div class="q-num">05 of 10</div>
+      <div class="q-text">When he doesn't initiate physically — what tends to come up for you?</div>
+      <div class="answer" onclick="pick(this,'R',5)"><span class="answer-letter">A</span><span class="answer-text">I wonder if something is off with my body — and feel the pull to change it</span></div>
+      <div class="answer" onclick="pick(this,'C',5)"><span class="answer-letter">B</span><span class="answer-text">I feel unwanted — and I reach for food to soothe that feeling</span></div>
+      <div class="answer" onclick="pick(this,'S',5)"><span class="answer-letter">C</span><span class="answer-text">Both tend to happen — I feel it in my body and I reach for comfort</span></div>
+    </div>
+
+    <div class="q-card" data-q="6">
+      <div class="q-num">06 of 10</div>
+      <div class="q-text">If you're being honest — your "healthy phase" after a breakup usually comes from...</div>
+      <div class="answer" onclick="pick(this,'R',6)"><span class="answer-letter">A</span><span class="answer-text">A desire to feel back in control — more than from genuine care for myself</span></div>
+      <div class="answer" onclick="pick(this,'C',6)"><span class="answer-letter">B</span><span class="answer-text">I don't really have one — I tend to stay in comfort mode for a while</span></div>
+      <div class="answer" onclick="pick(this,'S',6)"><span class="answer-letter">C</span><span class="answer-text">I go through phases of both — strict for a while, then I fall apart again</span></div>
+    </div>
+
+    <div class="q-card" data-q="7">
+      <div class="q-num">07 of 10</div>
+      <div class="q-text">Your relationship with food tends to feel most settled when...</div>
+      <div class="answer" onclick="pick(this,'R',7)"><span class="answer-letter">A</span><span class="answer-text">I'm on my own and focused — being in a relationship tends to throw me off</span></div>
+      <div class="answer" onclick="pick(this,'C',7)"><span class="answer-letter">B</span><span class="answer-text">I'm in a loving relationship — feeling secure in love helps me care for myself</span></div>
+      <div class="answer" onclick="pick(this,'S',7)"><span class="answer-letter">C</span><span class="answer-text">Honestly — it's rarely settled. It always seems to depend on love.</span></div>
+    </div>
+
+    <div class="q-card" data-q="8">
+      <div class="q-num">08 of 10</div>
+      <div class="q-text">When it comes to exercise — which feels most familiar?</div>
+      <div class="answer" onclick="pick(this,'R',8)"><span class="answer-letter">A</span><span class="answer-text">I tend to use it to make myself feel better about my body — especially after hard moments</span></div>
+      <div class="answer" onclick="pick(this,'C',8)"><span class="answer-letter">B</span><span class="answer-text">I struggle to stay consistent — motivated for a while then it falls away completely</span></div>
+      <div class="answer" onclick="pick(this,'S',8)"><span class="answer-letter">C</span><span class="answer-text">It swings between all-or-nothing — there's rarely a middle ground for me</span></div>
+    </div>
+
+    <div class="q-card" data-q="9">
+      <div class="q-num">09 of 10</div>
+      <div class="q-text">When you imagine truly feeling free in your body — what does that look like?</div>
+      <div class="answer" onclick="pick(this,'R',9)"><span class="answer-letter">A</span><span class="answer-text">Caring for myself from a place of love — not because I'm trying to fix or prove something</span></div>
+      <div class="answer" onclick="pick(this,'C',9)"><span class="answer-letter">B</span><span class="answer-text">Not needing food to fill the space when I feel lonely or unloved</span></div>
+      <div class="answer" onclick="pick(this,'S',9)"><span class="answer-letter">C</span><span class="answer-text">Feeling the same in my body whether I'm heartbroken or in love — actual steadiness</span></div>
+    </div>
+
+    <div class="q-card" data-q="10">
+      <div class="q-num">10 of 10</div>
+      <div class="q-text">When you sit with it — what do you sense has been underneath all of this?</div>
+      <div class="answer" onclick="pick(this,'R',10)"><span class="answer-letter">A</span><span class="answer-text">A belief that I need to look a certain way to be worthy of love and belonging</span></div>
+      <div class="answer" onclick="pick(this,'C',10)"><span class="answer-letter">B</span><span class="answer-text">A need to feel chosen — and food has been how I cope when I don't</span></div>
+      <div class="answer" onclick="pick(this,'S',10)"><span class="answer-letter">C</span><span class="answer-text">Love has always felt like the anchor — when it's there I'm okay, when it's gone I lose myself</span></div>
+    </div>
+
+    <div class="submit-wrap">
+      <button class="submit-btn" onclick="submitQuiz()">unlock my result →</button>
+    </div>
+  </div>
+
+  <!-- EMAIL GATE -->
+  <div class="email-gate" id="emailGate">
+    <span class="gate-eyebrow">one last step</span>
+    <h2 class="gate-title">Your result is ready.<br><em>Where should I send it?</em></h2>
+    <p class="gate-sub">Your result is ready. Pop your details below and I'll send your full breakdown straight to your inbox.</p>
+    <div class="gate-fields">
+      <input class="gate-field" type="text" id="firstName" placeholder="your first name" />
+      <input class="gate-field" type="email" id="emailAddress" placeholder="your email address" />
+    </div>
+    <button class="gate-btn" onclick="revealResult()">yes — show me my pattern →</button>
+    <p class="gate-privacy">your details are safe with me. no spam, ever. 🤍</p>
+  </div>
+
+</div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-wrapper" id="resultsWrapper">
+
+  <!-- ═══════════════════════════════ -->
+  <!--        RESULT: RESTRICTOR       -->
+  <!-- ═══════════════════════════════ -->
+  <div class="result-card" id="result-R">
+
+    <!-- STEP 1: RESULT -->
+    <div class="step-block step-r">
+      <div class="step-label">
+        <div class="step-num sn-light">1</div>
+        <span class="step-title-sm stl-light">read your result</span>
+      </div>
+      <span class="result-eyebrow">your pattern is</span>
+      <div class="result-name rn-r">The Restrictor.</div>
+      <div class="result-validation">
+        <p>First — there is nothing wrong with you. This pattern makes complete sense. It developed as a way to feel safe when love felt uncertain. It was never about weakness or lack of willpower. It was about survival.</p>
+      </div>
+      <div class="result-body">
+        You tend to use your body as a way to feel in control — especially when love feels unpredictable. When a relationship feels shaky or ends, something in you reaches for structure. Cleaner eating. More movement. A sense of order over something you can manage.<br><br>
+        From the outside it can look like motivation or a glow-up. But underneath it, there's often a quieter belief driving it — that if you just got your body right, you might finally feel like enough.
+      </div>
+      <div class="result-root root-r">
+        <span class="root-label rl-r">what's underneath this</span>
+        <div class="root-text rt-r">Your body has become tangled up with your sense of worth. Not because you chose that — but because somewhere along the way you learned that looking a certain way might make love feel safer. Healing this isn't about more discipline. It's about untangling worth from the body.</div>
+      </div>
+      <span class="heal-label">what begins to shift when you heal this</span>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>You start caring for your body from love — not from fear of not being enough</div>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>Your motivation to eat well and move doesn't disappear when love does</div>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>Your body stops feeling like something to fix and starts feeling like home</div>
+      <div class="result-hope rh-r">
+        <p class="rht-r">You are already enough. The work is simply learning to let your body feel that — not just your mind.</p>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <!-- STEP 2: VIDEO + BOOKING -->
+    <div class="video-section">
+      <div class="step-label" style="justify-content:center">
+        <div class="step-num sn-dark">2</div>
+        <span class="step-title-sm stl-dark">watch this — then decide if you're ready</span>
+      </div>
+
+      <h2 class="video-title">For the woman who's ready to feel the same in her body<br><em>whether she's heartbroken or in love.</em></h2>
+      <p class="video-sub">Watch this before you decide if Body Freedom is right for you.</p>
+
+      <!-- ── VIDEO BOX — replace src with your video file or embed URL ── -->
+      <div class="video-box">
+        <video id="videoR" controls poster="">
+          <!-- REPLACE THIS SRC WITH YOUR VIDEO FILE -->
+          <source src="YOUR-VIDEO-FILE.mp4" type="video/mp4">
+        </video>
+        <!-- This placeholder shows until you add your video -->
+        <div class="video-placeholder" id="placeholderR" onclick="document.getElementById('videoR').style.display='block'; this.style.display='none';">
+          <div class="video-placeholder-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-placeholder-label">A message from Jessah</div>
+          <div class="video-placeholder-text">Upload your video to replace this placeholder<br>Replace src="YOUR-VIDEO-FILE.mp4" with your file path</div>
+        </div>
+      </div>
+
+      <!-- DESIRED OUTCOME STRIP -->
+      <div class="outcome-strip">
+        <span class="outcome-label">in Body Freedom you will</span>
+        <div class="outcome-title">Stop proving yourself through your body — and <em>start living in it.</em></div>
+        <div class="outcome-grid">
+          <div class="outcome-item"><div class="outcome-dot"></div>Care for your body from love — not from heartbreak or panic</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Stop needing a breakup to feel motivated to take care of yourself</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Feel grounded in your body whether you're single or in love</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Untangle your worth from your body — for good</div>
+        </div>
+      </div>
+
+      <!-- BOOKING -->
+      <div class="booking-section">
+        <span class="booking-eyebrow">step 2 — if this felt true for you</span>
+        <div class="booking-title">Book a Free 20-Minute Body Freedom Strategy Call</div>
+        <p class="booking-sub">This is a free 45-minute call where we map out your exact pattern, your desired outcome, and whether Body Freedom is the right fit for you. No pressure. Just clarity.</p>
+        <a class="booking-btn" href="https://stan.store/jessahautum/jessahautum_funnel_757804" target="_blank">yes — book my free 20-min strategy call →</a>
+        <button class="booking-skip" onclick="document.getElementById('result-R').querySelector('.step-block').scrollIntoView({behavior:'smooth'})">no thanks — let me re-read my result</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!--      RESULT: COMFORT SEEKER     -->
+  <!-- ═══════════════════════════════ -->
+  <div class="result-card" id="result-C">
+
+    <div class="step-block step-c">
+      <div class="step-label">
+        <div class="step-num sn-light">1</div>
+        <span class="step-title-sm stl-light">read your result</span>
+      </div>
+      <span class="result-eyebrow">your pattern is</span>
+      <div class="result-name rn-c">The Comfort Seeker.</div>
+      <div class="result-validation">
+        <p>First — there is nothing wrong with you. Reaching for comfort when you feel unloved or unsafe is one of the most human things there is. This pattern wasn't a choice. It was a response. And it makes complete sense.</p>
+      </div>
+      <div class="result-body">
+        You tend to feel most settled in your body when love feels safe. When a relationship is warm and secure, you naturally take care of yourself — you eat well, you feel good, things flow. But when love feels uncertain, distant or gone, something shifts. Food becomes a source of comfort. A way to soothe the ache of feeling unchosen.<br><br>
+        This has never really been about food. It's been about learning to feel okay — in a body, in a life — even when love isn't holding you up.
+      </div>
+      <div class="result-root root-c">
+        <span class="root-label rl-c">what's underneath this</span>
+        <div class="root-text rt-c">You've learned to borrow your sense of safety from love. When it's present, you feel okay. When it's gone, your body feels the loss too. Healing this isn't about willpower around food — it's about learning to be your own source of comfort and safety.</div>
+      </div>
+      <span class="heal-label">what begins to shift when you heal this</span>
+      <div class="heal-item"><div class="h-dot hd-ye"></div>You can feel steady in your body even when love is uncertain or absent</div>
+      <div class="heal-item"><div class="h-dot hd-ye"></div>Food stops being the thing you reach for to fill the emotional space</div>
+      <div class="heal-item"><div class="h-dot hd-ye"></div>You become a source of comfort and safety for yourself — not just for others</div>
+      <div class="result-hope rh-c">
+        <p class="rht-c">You deserve to feel held — even when no one else is doing the holding. That's not selfish. That's the whole journey.</p>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div class="video-section">
+      <div class="step-label" style="justify-content:center">
+        <div class="step-num sn-dark">2</div>
+        <span class="step-title-sm stl-dark">watch this — then decide if you're ready</span>
+      </div>
+
+      <h2 class="video-title">For the woman who's ready to become<br><em>her own safe place.</em></h2>
+      <p class="video-sub">Watch this before you decide if Body Freedom is right for you.</p>
+
+      <div class="video-box">
+        <video id="videoC" controls poster="">
+          <source src="YOUR-VIDEO-FILE.mp4" type="video/mp4">
+        </video>
+        <div class="video-placeholder" id="placeholderC" onclick="document.getElementById('videoC').style.display='block'; this.style.display='none';">
+          <div class="video-placeholder-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-placeholder-label">A message from Jessah</div>
+          <div class="video-placeholder-text">Upload your video to replace this placeholder<br>Replace src="YOUR-VIDEO-FILE.mp4" with your file path</div>
+        </div>
+      </div>
+
+      <div class="outcome-strip">
+        <span class="outcome-label">in Body Freedom you will</span>
+        <div class="outcome-title">Stop outsourcing your worth — and <em>become your own source.</em></div>
+        <div class="outcome-grid">
+          <div class="outcome-item"><div class="outcome-dot"></div>Feel steady in your body even when love feels absent or uncertain</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Break the link between feeling loved and taking care of yourself</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Stop reaching for food to fill what love left behind</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Become your own comfort — so you're never without it</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <span class="booking-eyebrow">step 2 — if this felt true for you</span>
+        <div class="booking-title">Book a Free 20-Minute Body Freedom Strategy Call</div>
+        <p class="booking-sub">This is a free 45-minute call where we map out your exact pattern, your desired outcome, and whether Body Freedom is the right fit for you. No pressure. Just clarity.</p>
+        <a class="booking-btn" href="https://stan.store/jessahautum/jessahautum_funnel_757804" target="_blank">yes — book my free 20-min strategy call →</a>
+        <button class="booking-skip" onclick="document.getElementById('result-C').querySelector('.step-block').scrollIntoView({behavior:'smooth'})">no thanks — let me re-read my result</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!--        RESULT: SWINGER          -->
+  <!-- ═══════════════════════════════ -->
+  <div class="result-card" id="result-S">
+
+    <div class="step-block step-s">
+      <div class="step-label">
+        <div class="step-num sn-light">1</div>
+        <span class="step-title-sm stl-light">read your result</span>
+      </div>
+      <span class="result-eyebrow">your pattern is</span>
+      <div class="result-name rn-s">The Swinger.</div>
+      <div class="result-validation">
+        <p>First — there is nothing wrong with you. When your body swings this much, it's not a sign that you're broken or undisciplined. It's a sign that you've been deeply affected by love — and that your nervous system has been doing its best to keep up.</p>
+      </div>
+      <div class="result-body">
+        You tend to move between two places — sometimes reaching for control and restriction, sometimes reaching for comfort and softness. The swing often mirrors what's happening in your love life. In relationships, things loosen. After heartbreak, things tighten. And somewhere in the middle, you're searching for steadiness that never quite arrives.<br><br>
+        You've tried a lot of different approaches. And you may have wondered why nothing fully sticks. The reason isn't you — it's that the root has never been addressed.
+      </div>
+      <div class="result-root root-s">
+        <span class="root-label rl-s">what's underneath this</span>
+        <div class="root-text rt-s">Love has been the anchor your body organises itself around. When it's present, one part of you takes over. When it's gone, another does. The middle — that steady, consistent place — has never felt fully available because it can only come from inside. Healing this is about becoming your own anchor.</div>
+      </div>
+      <span class="heal-label">what begins to shift when you heal this</span>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>The swings start to soften — your body becomes more consistent regardless of your relationship status</div>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>You find the middle — not through more discipline, but through deeper self-connection</div>
+      <div class="heal-item"><div class="h-dot hd-pk"></div>Love stops being the thing that determines how you feel in your body</div>
+      <div class="result-hope rh-s">
+        <p class="rht-s">The middle exists. And it's not found in a better plan — it's found when you become the one constant in your own life.</p>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div class="video-section">
+      <div class="step-label" style="justify-content:center">
+        <div class="step-num sn-dark">2</div>
+        <span class="step-title-sm stl-dark">watch this — then decide if you're ready</span>
+      </div>
+
+      <h2 class="video-title">For the woman who's ready to stop swinging<br><em>and finally find the middle.</em></h2>
+      <p class="video-sub">Watch this before you decide if Body Freedom is right for you.</p>
+
+      <div class="video-box">
+        <video id="videoS" controls poster="">
+          <source src="YOUR-VIDEO-FILE.mp4" type="video/mp4">
+        </video>
+        <div class="video-placeholder" id="placeholderS" onclick="document.getElementById('videoS').style.display='block'; this.style.display='none';">
+          <div class="video-placeholder-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-placeholder-label">A message from Jessah</div>
+          <div class="video-placeholder-text">Upload your video to replace this placeholder<br>Replace src="YOUR-VIDEO-FILE.mp4" with your file path</div>
+        </div>
+      </div>
+
+      <div class="outcome-strip">
+        <span class="outcome-label">in Body Freedom you will</span>
+        <div class="outcome-title">Stop swinging with your love life — and <em>become your own anchor.</em></div>
+        <div class="outcome-grid">
+          <div class="outcome-item"><div class="outcome-dot"></div>Find the consistency you've been searching for — without another plan or reset</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Understand both sides of your pattern and heal them at the root</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Feel the same in your body whether you're heartbroken or in love</div>
+          <div class="outcome-item"><div class="outcome-dot"></div>Become the one constant in your own life — finally</div>
+        </div>
+      </div>
+
+      <div class="booking-section">
+        <span class="booking-eyebrow">step 2 — if this felt true for you</span>
+        <div class="booking-title">Book a Free 20-Minute Body Freedom Strategy Call</div>
+        <p class="booking-sub">This is a free 45-minute call where we map out your exact pattern, your desired outcome, and whether Body Freedom is the right fit for you. No pressure. Just clarity.</p>
+        <a class="booking-btn" href="https://stan.store/jessahautum/jessahautum_funnel_757804" target="_blank">yes — book my free 20-min strategy call →</a>
+        <button class="booking-skip" onclick="document.getElementById('result-S').querySelector('.step-block').scrollIntoView({behavior:'smooth'})">no thanks — let me re-read my result</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="container">
+  <div class="footer">
+    <div class="footer-name">Jessah Autum</div>
+    <div class="footer-sub">Body Freedom · Pattern + Identity Coach</div>
+  </div>
+</div>
+
 <script>
   const scores = { R: 0, C: 0, S: 0 };
   const answered = {};
@@ -24,7 +1337,6 @@
   function revealResult() {
     const name = document.getElementById('firstName').value.trim();
     const email = document.getElementById('emailAddress').value.trim();
-
     if (!name || !email) {
       alert('Please enter your name and email to unlock your result 🤍');
       return;
@@ -46,29 +1358,24 @@
       S: 'The Swinger'
     };
 
-    // 🔥 SEND TO GOOGLE SHEETS
-    fetch("https://script.google.com/macros/s/AKfycbwlWMib6hDFTWc3Kyw2yAyiNeXQ97vHZAMvCbSgppWxaY7SVRUjoW7_i_m3cdn_uF1O/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
+    // Send to Google Sheets via Apps Script
+    fetch('https://script.google.com/macros/s/AKfycby2KHXOaHwdVeai7nWH2FzhiP_4AsYsPQFPKhx3Ddw2eibEUUljdnz5_kNVYh5ENzb-/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        name: name,
+        firstName: name,
         email: email,
         result: resultNames[result]
       })
-    })
-    .then(res => res.text())
-    .then(data => console.log("Sheet success:", data))
-    .catch(err => console.error("Sheet error:", err));
+    }).catch(err => console.log('Sheet error:', err));
 
-    // Hide email gate
+    // Hide gate
     document.getElementById('emailGate').style.display = 'none';
 
     // Show results
     const wrapper = document.getElementById('resultsWrapper');
     wrapper.classList.add('visible');
-
     document.querySelectorAll('.result-card').forEach(c => c.classList.remove('active'));
     document.getElementById('result-' + result).classList.add('active');
 
@@ -77,3 +1384,6 @@
     }, 100);
   }
 </script>
+
+</body>
+</html>
